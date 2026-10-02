@@ -1,0 +1,105 @@
+:root {
+  --bg-dark: #1a1410;
+  --bg-elevated: #221a13;
+  --bg-card: #251c14;
+  --bg-card-hover: #2f2418;
+  --accent-primary: #ffb703;
+  --accent-secondary: #fb8500;
+  --accent-glow: rgba(255, 183, 3, 0.22);
+  --accent-glow-strong: rgba(251, 133, 0, 0.35);
+  --text-white: #f5efe6;
+  --text-gray: #a89684;
+  --text-muted: #6b5a48;
+  --border-subtle: #3a2c1e;
+  --border-accent: rgba(255, 183, 3, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  background-image: radial-gradient(ellipse at top, rgba(255, 183, 3, 0.07) 0%, transparent 55%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-login {
+  background-color: var(--bg-card);
+  color: var(--text-white);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-login:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--accent-secondary);
+  color: var(--accent-primary);
+}
+
+.btn-register {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: #1a1205;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.btn-register:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 25px var(--accent-glow-strong);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--text-white);
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
