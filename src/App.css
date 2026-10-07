@@ -12,6 +12,30 @@
   --text-muted: #6b5a48;
   --border-subtle: #3a2c1e;
   --border-accent: rgba(255, 183, 3, 0.4);
+
+  --banner-main-bg: linear-gradient(135deg, #221a13 0%, #2b2014 100%);
+  --banner-main-glow: radial-gradient(circle at 80% 50%, rgba(255, 183, 3, 0.18), transparent 60%);
+  --banner-wheel-bg: linear-gradient(135deg, #221a13 0%, #2e1d10 100%);
+  --banner-wheel-glow: radial-gradient(circle at 80% 50%, rgba(251, 133, 0, 0.22), transparent 60%);
+}
+
+body.theme-light {
+  --bg-dark: #f7f3ec;
+  --bg-elevated: #efe7d9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f4ecdd;
+  --text-white: #2b1d0e;
+  --text-gray: #6b5a48;
+  --text-muted: #a89684;
+  --border-subtle: #e3d6c0;
+  --border-accent: rgba(251, 133, 0, 0.5);
+  --accent-glow: rgba(255, 183, 3, 0.35);
+  --accent-glow-strong: rgba(251, 133, 0, 0.45);
+
+  --banner-main-bg: linear-gradient(135deg, #fff5e0 0%, #ffe9c4 100%);
+  --banner-main-glow: radial-gradient(circle at 80% 50%, rgba(255, 183, 3, 0.35), transparent 60%);
+  --banner-wheel-bg: linear-gradient(135deg, #fff5e0 0%, #ffdcb8 100%);
+  --banner-wheel-glow: radial-gradient(circle at 80% 50%, rgba(251, 133, 0, 0.35), transparent 60%);
 }
 
 * {
@@ -27,6 +51,7 @@ html, body {
   background-image: radial-gradient(ellipse at top, rgba(255, 183, 3, 0.07) 0%, transparent 55%);
   background-attachment: fixed;
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #root {

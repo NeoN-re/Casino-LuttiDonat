@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
@@ -11,9 +11,18 @@ import Register from './pages/Register/Register'
 import NotFound from './pages/NotFound/NotFound'
 
 function App() {
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark')
+
+  useEffect(() => {
+    document.body.className = theme === 'light' ? 'theme-light' : 'theme-dark'
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
+  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
+
   return (
     <Routes>
-      <Route element={<MainLayout />}>
+      <Route element={<MainLayout theme={theme} onToggleTheme={toggleTheme} />}>
         <Route path="/" element={<Home />} />
         <Route path="/games" element={<GamesPage />} />
         <Route path="/game/:id" element={<GamePlayer />} />

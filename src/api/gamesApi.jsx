@@ -7,15 +7,15 @@ const gamesData = [
   },
   {
     id: 2,
-    img: '/games/junglevolcano.jpg',
-    title: 'Jungle Volcano',
-    demo: 'https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20olympgate&websiteUrl=https://demogamesfree.pragmaticplay.net&jurisdiction=99&lang=ru&cur=RUB',
+    img: '/games/sugarrush.jpg',
+    title: 'Sugar Rush',
+    demo: 'https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?lang=ru&cur=RUB&gameSymbol=vs20sugarrush&jurisdiction=99',
   },
   {
     id: 3,
-    img: '/games/mummyland.jpg',
-    title: 'Mummyland Treasures',
-    demo: 'https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20olympgate&websiteUrl=https://demogamesfree.pragmaticplay.net&jurisdiction=99&lang=ru&cur=RUB',
+    img: '/games/gemsbonanza.jpg',
+    title: 'Gems Bonanza',
+    demo: 'https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?lang=ru&cur=RUB&gameSymbol=vs20goldfever&jurisdiction=99',
   },
   {
     id: 4,
@@ -31,9 +31,9 @@ const gamesData = [
   },
   {
     id: 6,
-    img: '/games/wildbounty.jpg',
-    title: 'Wild Bounty Showdown',
-    demo: 'https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20olympgate&websiteUrl=https://demogamesfree.pragmaticplay.net&jurisdiction=99&lang=ru&cur=RUB',
+    img: '/games/thedoghouse.jpg',
+    title: 'The Dog House Megaways',
+    demo: 'https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?lang=ru&cur=RUB&gameSymbol=vs20doghouse&jurisdiction=99',
   },
 ]
 
