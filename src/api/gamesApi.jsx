@@ -36,6 +36,18 @@ const gamesData = [
     title: 'The Dog House Megaways',
     demo: 'https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?lang=ru&cur=RUB&gameSymbol=vs20doghouse&jurisdiction=99',
   },
+  {
+    id: 7,
+    img: `${import.meta.env.BASE_URL}/games/aviamasters.jpg`, 
+    title: 'Aviamasters',
+    demo: 'https://demo.bgaming-network.com/play/Aviamasters/FUN?server=demo',
+  },
+  {
+    id: 8,
+    img: `${import.meta.env.BASE_URL}/games/fallingpickaxe.jpg`, 
+    title: 'Falling Pickaxe',
+    demo: 'https://geo-demo.pixmove-geo.vip/falling_pickaxe/?token=uhMCtMuiLf41kHp8aGJN0X78w',
+  },
 ]
 
 export const fetchGames = () => {
