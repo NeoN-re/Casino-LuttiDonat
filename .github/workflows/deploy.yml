@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm config set registry https://npmjs.org
-          npm ci
+          npm install
       - name: Build
         run: npm run build
       - name: Setup Pages
