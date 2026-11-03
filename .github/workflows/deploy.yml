@@ -28,9 +28,7 @@ jobs:
           node-version: 20
           cache: 'npm'
       - name: Install dependencies
-        run: |
-          npm config set registry https://npmjs.org
-          npm install
+        run: npm install --registry=https://npmjs.org
       - name: Build
         run: npm run build
       - name: Setup Pages
