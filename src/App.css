@@ -128,3 +128,7 @@ html, body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-secondary);
 }
+
+#logo {
+  left: 10px
+}
