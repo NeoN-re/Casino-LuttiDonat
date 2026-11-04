@@ -48,6 +48,12 @@ const gamesData = [
     title: 'Falling Pickaxe',
     demo: 'https://games-ru.pixmove.co/falling_pickaxe/?token=Gr2PPUJ9aJlMSOz9nl7lhDL7m',
   },
+  {
+    id: 9,
+    img: `${import.meta.env.BASE_URL}/games/aviatorSP.jpg`, 
+    title: 'AviatorSP',
+    demo: 'https://api.mellstr.games/game/AviatorSP/DEMO?api_exit=/',
+  },
 ]
 
 export const fetchGames = () => {
