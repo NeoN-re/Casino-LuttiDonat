@@ -54,6 +54,24 @@ const gamesData = [
     title: 'AviatorSP',
     demo: 'https://api.mellstr.games/game/AviatorSP/DEMO?api_exit=/',
   },
+  {
+    id: 10,
+    img: `${import.meta.env.BASE_URL}/games/ChickenRoadBonusIO.jpg`, 
+    title: 'Chicken Road Bonus IO',
+    demo: 'https://api.mellstr.games/game/AviatorSP/DEMO?api_exit=/',
+  },
+  {
+    id: 11,
+    img: `${import.meta.env.BASE_URL}/games/ChickenRoadVegasIO.jpg`, 
+    title: 'Chicken Road Vegas IO',
+    demo: 'https://api.mellstr.games/game/AviatorSP/DEMO?api_exit=/',
+  },
+  {
+    id: 12,
+    img: `${import.meta.env.BASE_URL}/games/MinesOR.jpg`, 
+    title: 'MinesOR',
+    demo: 'https://api.mellstr.games/game/AviatorSP/DEMO?api_exit=/',
+  },
 ]
 
 export const fetchGames = () => {
