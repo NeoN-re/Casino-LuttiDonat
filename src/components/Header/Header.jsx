@@ -6,7 +6,7 @@ const Header = ({ searchQuery = '', onSearchChange, theme, onToggleTheme }) => {
   return (
     <header className="header">
       <Link to="/" className="logo"  id = "logo">
-          <img src="/Logo1.png" id = "logo"/>
+          <img src={`${process.env.PUBLIC_URL}/Logo1.png`} alt="LuttiDonat" id="logo"/>
       </Link>
 
       <div className="search-wrapper">
