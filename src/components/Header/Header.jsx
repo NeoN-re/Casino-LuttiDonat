@@ -5,8 +5,8 @@ import './Header.css'
 const Header = ({ searchQuery = '', onSearchChange, theme, onToggleTheme }) => {
   return (
     <header className="header">
-      <Link to="/" className="logo"  style={{ textDecoration: 'none' }}>
-          <img src="Logo1.png" id = "logo"/>
+      <Link to="/" className="logo"  id = "logo">
+          <img src="/Logo1.png" id = "logo"/>
       </Link>
 
       <div className="search-wrapper">
