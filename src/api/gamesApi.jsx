@@ -58,13 +58,13 @@ const gamesData = [
     id: 10,
     img: `${import.meta.env.BASE_URL}/games/ChickenRoadBonusIO.jpg`, 
     title: 'Chicken Road Bonus IO',
-    demo: 'https://api.mellstr.games/game/AviatorSP/DEMO?api_exit=/',
+    demo: 'https://api.mellstr.games/game/ChickenRoadBonusIO/DEMO?api_exit=/',
   },
   {
     id: 11,
     img: `${import.meta.env.BASE_URL}/games/ChickenRoadVegasIO.jpg`, 
     title: 'Chicken Road Vegas IO',
-    demo: 'https://api.mellstr.games/game/AviatorSP/DEMO?api_exit=/',
+    demo: 'https://api.mellstr.games/game/ChickenRoadVegasIO/DEMO?api_exit=/',
   },
   {
     id: 12,
