@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Header.css'
+import logoImg from './Logo1.png';
 
 const Header = ({ searchQuery = '', onSearchChange, theme, onToggleTheme }) => {
   return (
     <header className="header">
       <Link to="/" className="logo"  id = "logo">
-          <img src={`${process.env.PUBLIC_URL}/Logo1.png`} alt="LuttiDonat" id="logo"/>
+          <img src= {logoImg} alt="LuttiDonat" id="logo"/>
       </Link>
 
       <div className="search-wrapper">
