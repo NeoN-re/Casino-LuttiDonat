@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Header.css'
-import logoImg from './Logo1.png';
+import logoImg from "../../assets/Logo1.png";
 
 const Header = ({ searchQuery = '', onSearchChange, theme, onToggleTheme }) => {
   return (
