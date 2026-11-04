@@ -72,6 +72,12 @@ const gamesData = [
     title: 'MinesOR',
     demo: 'https://api.mellstr.games/game/AviatorSP/DEMO?api_exit=/',
   },
+  {
+    id: 13,
+    img: `${import.meta.env.BASE_URL}/games/BlackjackOR.jpg`, 
+    title: 'BlackjackOR',
+    demo: 'https://api.mellstr.games/game/BlackjackSurrenderPT/DEMO?api_exit=/',
+  },
 ]
 
 export const fetchGames = () => {
