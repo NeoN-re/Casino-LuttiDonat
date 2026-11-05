@@ -45,7 +45,7 @@ const gamesData = [
     id: 8,
     img: `${import.meta.env.BASE_URL}/games/fallingpickaxe.jpg`, 
     title: 'Falling Pickaxe',
-    demo: 'https://games-ru.pixmove.co/falling_pickaxe/?token=Gr2PPUJ9aJlMSOz9nl7lhDL7m',
+    demo: 'https://geo-demo.pixmove-geo.vip/falling_pickaxe/?token=J54Z4TZ8Gg87MdDSk6FhMb5xC',
   },
   {
     id: 9,
