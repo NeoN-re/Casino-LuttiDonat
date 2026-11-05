@@ -58,13 +58,13 @@ const gamesData = [
     id: 10,
     img: `${import.meta.env.BASE_URL}/games/ChickenRoadBonusIO.jpg`, 
     title: 'Chicken Road Bonus IO',
-    demo: 'https://api.mellstr.games/game/ChickenRoadBonusIO/DEMO?api_exit=/',
+    demo: 'https://chicken-road.inout.games/api/modes/game?gameMode=chicken-road&operatorId=ee2013ed-e1f0-4d6e-97d2-f36619e2eb52&authToken=a2018b32-eb32-46b6-921d-439ed744743a&currency=USD&lang=en&theme=&gameCustomizationId=&lobbyUrl=',
   },
   {
     id: 11,
     img: `${import.meta.env.BASE_URL}/games/ChickenRoadVegasIO.jpg`, 
     title: 'Chicken Road Vegas IO',
-    demo: 'https://api.mellstr.games/game/ChickenRoadVegasIO/DEMO?api_exit=/',
+    demo: 'https://chicken-road-vegas.inout.games/api/modes/game?gameMode=chicken-road-vegas&operatorId=ee2013ed-e1f0-4d6e-97d2-f36619e2eb52&authToken=f4554bef-d8f2-493e-bc9f-b6344b4925bc&currency=USD&lang=en&theme=&gameCustomizationId=&lobbyUrl=',
   },
   {
     id: 12,
@@ -82,7 +82,7 @@ const gamesData = [
     id: 14,
     img: `${import.meta.env.BASE_URL}/games/PenguSportIO.jpg`, 
     title: 'PenguSportIO',
-    demo: 'https://api.mellstr.games/game/PenguSportIO/DEMO?api_exit=/',
+    demo: 'https://pengu-sport.inout.games/api/modes/game?gameMode=pengu-sport&operatorId=ee2013ed-e1f0-4d6e-97d2-f36619e2eb52&authToken=d591cf0d-bf72-47cd-8c13-560d979c762e&currency=USD&lang=en&theme=&gameCustomizationId=&lobbyUrl=',
   },
   {
     id: 15,
