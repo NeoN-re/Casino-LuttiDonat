@@ -86,11 +86,12 @@ const gamesData = [
   },
   {
     id: 15,
-    img: `${import.meta.env.BASE_URL}/games/-.jpg`, 
-    title: '-',
-    demo: 'https://api.mellstr.games/game/-/DEMO?api_exit=/',
+    img: `${import.meta.env.BASE_URL}/games/vortexgame.jpg`, 
+    title: 'Vortex game',
+    demo: 'https://hub.turbogames.io/api/integrations/globonet?game_id=vortex&token=&lang=en&home=https://slotcatalog.com/en&channel=desktop&demo=1',
   },
 ]
+  
 
 export const fetchGames = () => {
   return new Promise((resolve) => {
