@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { fetchGames } from '../../api/gamesApi'
+import Blackjack from '../Blackjack/Blackjack'
 
 const GamePlayer = () => {
   const { id } = useParams()
@@ -37,17 +38,24 @@ const GamePlayer = () => {
         Назад к играм
       </Link>
 
-      <div style={{ width: '100%', aspectRatio: '16 / 9', background: '#000', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
-        <iframe
-          src={game.demo}
-          width="100%"
-          height="100%"
-          frameBorder="0"
-          allowFullScreen
-          allow="autoplay; fullscreen"
-          title={game.title || 'Game'}
-        />
-      </div>
+      {/* Если игра локальная — рендерим компонент. Иначе — iframe */}
+      {game.isLocal ? (
+        <div style={{ marginTop: 20 }}>
+           <Blackjack />
+        </div>
+      ) : (
+        <div style={{ width: '100%', aspectRatio: '16 / 9', background: '#000', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
+          <iframe
+            src={game.demo}
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            allowFullScreen
+            allow="autoplay; fullscreen"
+            title={game.title || 'Game'}
+          />
+        </div>
+      )}
     </div>
   )
 }

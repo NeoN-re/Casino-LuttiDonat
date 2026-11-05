@@ -1,7 +1,6 @@
 const gamesData = [
   {
     id: 1,
-    // Обратите внимание на обратные кавычки ` ` вместо одинарных ' '
     img: `${import.meta.env.BASE_URL}/games/zeusvshades.jpg`, 
     title: 'Zeus vs Hades',
     demo: 'https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20godsofwar&websiteUrl=https://demogamesfree.pragmaticplay.net&jurisdiction=99&lang=ru&cur=RUB',
@@ -101,6 +100,13 @@ const gamesData = [
     img: `${import.meta.env.BASE_URL}/games/vortexgamefootball.jpg`, 
     title: 'Vortex Power Kick',
     demo: 'https://vortexpowerkick.turbogames.io',
+  },
+  {
+    id: 18,
+    img: `${import.meta.env.BASE_URL}/games/blackjack-local.jpg`,
+    title: 'Блэкджек, Blackjack, 21, очко',
+    demo: null,
+    isLocal: true,
   },
 ]
   

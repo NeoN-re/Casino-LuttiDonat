@@ -9,6 +9,7 @@ import GamePlayer from './pages/Game/GamePlayer'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import NotFound from './pages/NotFound/NotFound'
+import Blackjack from './pages/Blackjack/Blackjack'
 
 function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark')
@@ -28,6 +29,7 @@ function App() {
         <Route path="/game/:id" element={<GamePlayer />} />
         <Route path="/bonuses" element={<div style={{ color: 'var(--text-white)', padding: 40, textAlign: 'center' }}><h1>Бонусы (скоро)</h1></div>} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/blackjack" element={<Blackjack />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
