@@ -1,0 +1,128 @@
+.mines-container {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mines-header {
+  display: flex;
+  align-items: center;
+}
+
+.mines-controls-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  align-items: flex-end;
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.control-group label {
+  font-size: 12px;
+  color: var(--text-gray);
+}
+
+.control-group input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-dark);
+  color: var(--text-white);
+  font-size: 16px;
+  width: 120px;
+}
+
+.play-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.multiplier-badge {
+  background: var(--bg-dark);
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid var(--border-accent);
+  color: var(--text-white);
+}
+
+.multiplier-badge strong {
+  color: var(--accent-primary);
+  font-size: 18px;
+}
+
+.mines-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+}
+
+.mine-cell {
+  aspect-ratio: 1;
+  background: #2f2418;
+  border: 2px solid #3a2c1e;
+  border-radius: 12px;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 0 #1a1410;
+}
+
+.mine-cell:hover:not(:disabled) {
+  background: #3f3222;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #1a1410;
+}
+
+.mine-cell:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #1a1410;
+}
+
+.mine-cell.safe {
+  background: rgba(255, 183, 3, 0.15);
+  border-color: var(--accent-primary);
+  animation: popIn 0.3s ease-out;
+}
+
+.mine-cell.bomb {
+  background: rgba(255, 0, 0, 0.2);
+  border-color: #ff3333;
+}
+
+.mine-cell.exploded {
+  background: #ff0000;
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}

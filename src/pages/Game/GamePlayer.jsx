@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { fetchGames } from '../../api/gamesApi'
 import Blackjack from '../Blackjack/Blackjack'
+import Mines from '../Mines/Mines';
+// Если вы добавляли Покер, импортируйте и его:
+// import Poker from '../Poker/Poker'; 
 
 const GamePlayer = () => {
   const { id } = useParams()
@@ -38,10 +41,14 @@ const GamePlayer = () => {
         Назад к играм
       </Link>
 
-      {/* Если игра локальная — рендерим компонент. Иначе — iframe */}
+      {/* ВОТ ЗДЕСЬ МЫ ДЕЛАЕМ ПРОВЕРКУ КОМПОНЕНТА */}
       {game.isLocal ? (
         <div style={{ marginTop: 20 }}>
-           <Blackjack />
+           {game.component === 'Mines' && <Mines />}
+           {(!game.component || game.component === 'Blackjack') && <Blackjack />}
+           
+           {/* Если добавите покер, раскомментируйте: */}
+           {/* {game.component === 'Poker' && <Poker />} */}
         </div>
       ) : (
         <div style={{ width: '100%', aspectRatio: '16 / 9', background: '#000', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>

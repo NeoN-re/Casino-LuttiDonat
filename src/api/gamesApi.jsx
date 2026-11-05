@@ -107,6 +107,15 @@ const gamesData = [
     title: 'Блэкджек, Blackjack, 21, очко',
     demo: null,
     isLocal: true,
+    component: 'Blackjack'
+  },
+  {
+    id: 19,
+    img: `${import.meta.env.BASE_URL}/games/mines-local.jpg`,
+    title: 'Мины, минёр, минер',
+    demo: null,
+    isLocal: true,
+    component: 'Mines'
   },
 ]
   
