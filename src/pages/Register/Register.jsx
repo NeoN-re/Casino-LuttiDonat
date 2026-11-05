@@ -19,28 +19,19 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
 
-    // 1. Создаем пользователя
+    // Передаем username прямо в метаданные при регистрации!
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: { username: username } // <--- Вот эта строчка нужна триггеру
+      }
     });
 
     if (authError) {
       alert(authError.message);
       setLoading(false);
       return;
-    }
-
-    // 2. Сохраняем имя в профиль
-    if (authData.user) {
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .update({ username })
-        .eq('id', authData.user.id);
-
-      if (profileError) {
-        console.error("Ошибка при сохранении имени:", profileError.message);
-      }
     }
 
     setLoading(false);
