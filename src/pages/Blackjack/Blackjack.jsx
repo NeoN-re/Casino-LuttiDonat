@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext'; // <-- Подключаем контекст
 import './Blackjack.css';
 
 const SUITS = ['♠', '♥', '♦', '♣'];
@@ -36,20 +36,29 @@ const calculateScore = (hand) => {
 };
 
 const Blackjack = () => {
+  const { profile, updateBalance } = useAuth(); // <-- Берем баланс из базы
+  
   const [deck, setDeck] = useState([]);
   const [playerHand, setPlayerHand] = useState([]);
   const [dealerHand, setDealerHand] = useState([]);
-  const [gameState, setGameState] = useState('betting'); // betting, playing, dealerTurn, gameOver
+  const [gameState, setGameState] = useState('betting');
   const [message, setMessage] = useState('');
-  const [balance, setBalance] = useState(1000);
   const [bet, setBet] = useState(100);
 
+  // Если профиль еще не загрузился, показываем заглушку
+  if (!profile) return <div style={{color: 'white', padding: 20}}>Загрузка профиля...</div>;
+
+  const currentBalance = profile.balance || 0;
+
   const startGame = () => {
-    if (balance < bet) {
+    if (currentBalance < bet) {
       setMessage('Недостаточно средств!');
       return;
     }
-    setBalance((prev) => prev - bet);
+    
+    // Списываем ставку
+    updateBalance(currentBalance - bet);
+
     const newDeck = createDeck();
     const newPlayerHand = [newDeck.pop(), newDeck.pop()];
     const newDealerHand = [newDeck.pop(), newDeck.pop()];
@@ -66,11 +75,11 @@ const Blackjack = () => {
     if (playerScore === 21) {
       if (dealerScore === 21) {
         setMessage('Ничья (Пуш)! У обоих Блэкджек.');
-        setBalance((prev) => prev + bet);
+        updateBalance(currentBalance); // Возвращаем ставку
         setGameState('gameOver');
       } else {
         setMessage('Блэкджек! Вы выиграли!');
-        setBalance((prev) => prev + bet * 2.5);
+        updateBalance(currentBalance + Math.floor(bet * 1.5)); // Выплата 2.5 к 1 (чистый выигрыш 1.5)
         setGameState('gameOver');
       }
     }
@@ -107,22 +116,22 @@ const Blackjack = () => {
           // Дилер закончил набирать
           if (currentDealerScore > 21) {
             setMessage('Дилер перебрал! Вы выиграли!');
-            setBalance((prev) => prev + bet * 2);
+            updateBalance(currentBalance + bet * 2);
           } else if (currentDealerScore > currentPlayerScore) {
             setMessage('Дилер выиграл. Вы проиграли.');
           } else if (currentDealerScore < currentPlayerScore) {
             setMessage('Вы выиграли!');
-            setBalance((prev) => prev + bet * 2);
+            updateBalance(currentBalance + bet * 2);
           } else {
             setMessage('Ничья (Пуш)!');
-            setBalance((prev) => prev + bet);
+            updateBalance(currentBalance + bet);
           }
           setGameState('gameOver');
         }
       }, 1000);
       return () => clearTimeout(timer);
     }
-  }, [gameState, dealerHand, deck, playerHand, bet]);
+  }, [gameState, dealerHand, deck, playerHand, bet, currentBalance, updateBalance]);
 
   const resetGame = () => {
     setGameState('betting');
@@ -149,12 +158,11 @@ const Blackjack = () => {
     <div className="blackjack-container">
       <div className="blackjack-header" style={{ justifyContent: 'flex-end' }}>
         <div className="balance-display">
-          Баланс: <span>{balance} ₽</span>
+          Баланс: <span>{currentBalance} ₽</span>
         </div>
       </div>
 
       <div className="blackjack-table">
-        {/* Дилер */}
         <div className="hand-container">
           <h3>Дилер: {gameState === 'playing' ? '?' : calculateScore(dealerHand)}</h3>
           <div className="cards-row">
@@ -162,12 +170,10 @@ const Blackjack = () => {
           </div>
         </div>
 
-        {/* Сообщение */}
         <div className="message-area">
           {message && <h2 className="game-message">{message}</h2>}
         </div>
 
-        {/* Игрок */}
         <div className="hand-container">
           <div className="cards-row">
             {playerHand.map((card, i) => renderCard(card))}
@@ -176,7 +182,6 @@ const Blackjack = () => {
         </div>
       </div>
 
-      {/* Управление */}
       <div className="blackjack-controls">
         {gameState === 'betting' && (
           <div className="bet-controls">
@@ -186,7 +191,7 @@ const Blackjack = () => {
               value={bet}
               onChange={(e) => setBet(Number(e.target.value))}
               min="10"
-              max={balance}
+              max={currentBalance}
               step="10"
             />
             <button className="btn btn-register" onClick={startGame}>

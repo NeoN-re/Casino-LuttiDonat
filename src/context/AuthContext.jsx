@@ -39,8 +39,28 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => supabase.auth.signOut();
 
+  // НОВАЯ ФУНКЦИЯ: Обновление баланса в базе данных и в интерфейсе
+  const updateBalance = async (newBalance) => {
+    if (!user) return;
+    
+    // Отправляем новый баланс в Supabase
+    const { error } = await supabase
+      .from('profiles')
+      .update({ balance: newBalance })
+      .eq('id', user.id);
+
+    if (error) {
+      console.error("Ошибка обновления баланса:", error);
+      return;
+    }
+
+    // Обновляем локальный стейт, чтобы шапка сайта сразу перерисовалась
+    setProfile((prev) => ({ ...prev, balance: newBalance }));
+  };
+
   return (
-    <AuthContext.Provider value={{ user, profile, setProfile, loading, logout }}>
+    // Добавили updateBalance в value, чтобы игра могла его использовать
+    <AuthContext.Provider value={{ user, profile, setProfile, loading, logout, updateBalance }}>
       {!loading && children}
     </AuthContext.Provider>
   );
