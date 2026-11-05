@@ -147,10 +147,7 @@ const Blackjack = () => {
 
   return (
     <div className="blackjack-container">
-      <div className="blackjack-header">
-        <Link to="/" className="btn btn-login" style={{ textDecoration: 'none' }}>
-          ← Назад в лобби
-        </Link>
+      <div className="blackjack-header" style={{ justifyContent: 'flex-end' }}>
         <div className="balance-display">
           Баланс: <span>{balance} ₽</span>
         </div>
