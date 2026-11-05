@@ -1,13 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './Header.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Header.css';
 import logoImg from "../../assets/Logo1.png";
+import { useAuth } from '../../context/AuthContext'; // <-- Импорт контекста
 
 const Header = ({ searchQuery = '', onSearchChange, theme, onToggleTheme }) => {
+  const { user, profile, logout } = useAuth(); // <-- Получаем данные
+
   return (
     <header className="header">
-      <Link to="/" className="logo"  id = "logo">
-          <img src= {logoImg} alt="LuttiDonat" id="logo"/>
+      <Link to="/" className="logo" id="logo">
+          <img src={logoImg} alt="LuttiDonat" id="logo"/>
       </Link>
 
       <div className="search-wrapper">
@@ -35,15 +38,31 @@ const Header = ({ searchQuery = '', onSearchChange, theme, onToggleTheme }) => {
           {theme === 'dark' ? '☀' : '☾'}
         </button>
 
-        <Link to="/login" className="btn btn-login" style={{ textDecoration: 'none' }}>
-          Вход
-        </Link>
-        <Link to="/register" className="btn btn-register" style={{ textDecoration: 'none' }}>
-          Регистрация
-        </Link>
+        {user ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+            <span style={{ color: 'var(--text-white)', fontWeight: 'bold' }}>
+              {profile?.username || 'Игрок'}
+            </span>
+            <span style={{ color: 'var(--accent-primary)', fontWeight: 'bold', background: 'rgba(255, 183, 3, 0.1)', padding: '5px 10px', borderRadius: '8px' }}>
+              {profile?.balance || 0} ₽
+            </span>
+            <button onClick={logout} className="btn btn-login">
+              Выйти
+            </button>
+          </div>
+        ) : (
+          <>
+            <Link to="/login" className="btn btn-login" style={{ textDecoration: 'none' }}>
+              Вход
+            </Link>
+            <Link to="/register" className="btn btn-register" style={{ textDecoration: 'none' }}>
+              Регистрация
+            </Link>
+          </>
+        )}
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
