@@ -25,7 +25,7 @@ const Games = ({ searchQuery = '' }) => {
   const filteredGames = games.filter((game) => {
     const q = searchQuery.trim().toLowerCase()
     if (!q) return true
-    return game.img.toLowerCase().includes(q)
+    return game.title.toLowerCase().includes(q)
   })
 
   return (
@@ -52,7 +52,7 @@ const Games = ({ searchQuery = '' }) => {
               <Link key={game.id} to={`/game/${game.id}`} className="game-card">
                 <div className="game-image">
                   <img
-                    src={game.img}
+                    src={game.title}
                     alt=""
                     loading="lazy"
                     onError={(e) => {
