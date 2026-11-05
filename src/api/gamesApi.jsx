@@ -87,8 +87,20 @@ const gamesData = [
   {
     id: 15,
     img: `${import.meta.env.BASE_URL}/games/vortexgame.jpg`, 
-    title: 'Vortex game',
+    title: 'Vortex',
     demo: 'https://hub.turbogames.io/api/integrations/globonet?game_id=vortex&token=&lang=en&home=https://slotcatalog.com/en&channel=desktop&demo=1',
+  },
+  {
+    id: 16,
+    img: `${import.meta.env.BASE_URL}/games/vortexgame2.jpg`, 
+    title: 'Vortex 2',
+    demo: 'https://vortex2.turbogames.io',
+  },
+  {
+    id: 17,
+    img: `${import.meta.env.BASE_URL}/games/vortexgamefootball.jpg`, 
+    title: 'Vortex Power Kick',
+    demo: 'https://vortexpowerkick.turbogames.io',
   },
 ]
   
