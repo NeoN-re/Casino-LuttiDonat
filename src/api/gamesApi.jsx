@@ -70,13 +70,25 @@ const gamesData = [
     id: 12,
     img: `${import.meta.env.BASE_URL}/games/MinesOR.jpg`, 
     title: 'MinesOR',
-    demo: 'https://api.mellstr.games/game/AviatorSP/DEMO?api_exit=/',
+    demo: 'https://api.mellstr.games/game/MinesOR/DEMO?api_exit=/',
   },
   {
     id: 13,
     img: `${import.meta.env.BASE_URL}/games/BlackjackOR.jpg`, 
     title: 'BlackjackOR',
     demo: 'https://api.mellstr.games/game/BlackjackSurrenderPT/DEMO?api_exit=/',
+  },
+  {
+    id: 14,
+    img: `${import.meta.env.BASE_URL}/games/PenguSportIO.jpg`, 
+    title: 'PenguSportIO',
+    demo: 'https://api.mellstr.games/game/PenguSportIO/DEMO?api_exit=/',
+  },
+  {
+    id: 15,
+    img: `${import.meta.env.BASE_URL}/games/-.jpg`, 
+    title: '-',
+    demo: 'https://api.mellstr.games/game/-/DEMO?api_exit=/',
   },
 ]
 
