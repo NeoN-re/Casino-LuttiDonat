@@ -104,7 +104,7 @@ const gamesData = [
   {
     id: 18,
     img: `${import.meta.env.BASE_URL}/games/blackjack-local.jpg`,
-    title: 'Блэкджек, Blackjack, 21, очко',
+    title: 'Блэкджек, Blackjack, 21, Очко',
     demo: null,
     isLocal: true,
     component: 'Blackjack'
@@ -112,7 +112,7 @@ const gamesData = [
   {
     id: 19,
     img: `${import.meta.env.BASE_URL}/games/mines-local.jpg`,
-    title: 'Мины, минёр, минер',
+    title: 'Мины, Минёр, Минер, Mines',
     demo: null,
     isLocal: true,
     component: 'Mines'
