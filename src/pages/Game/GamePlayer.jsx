@@ -53,7 +53,7 @@ const GamePlayer = () => {
         }}>
           <h2 style={{ fontSize: 32, color: 'var(--accent-primary)', marginBottom: 15 }}>Требуется регистрация</h2>
           <p style={{ color: 'var(--text-gray)', marginBottom: 30, maxWidth: 400, fontSize: 16 }}>
-            Чтобы играть в "{game.title}", вам необходимо войти в аккаунт или зарегистрироваться.
+            Чтобы играть, вам необходимо войти в аккаунт или зарегистрироваться.
           </p>
           <div style={{ display: 'flex', gap: 15 }}>
             <Link to="/register" className="btn btn-register" style={{ textDecoration: 'none', padding: '12px 30px', fontSize: 16 }}>
