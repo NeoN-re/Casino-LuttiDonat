@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { fetchGames } from '../../api/gamesApi'
 import { useAuth } from '../../context/AuthContext'
-import Blackjack from '../../components/Blackjack/Blackjack'
-import Mines from '../../components/Mines/Mines'
+import Blackjack from '../../pages/Blackjack/Blackjack'
+import Mines from '../../pages/Mines/Mines'
 
 const GamePlayer = () => {
   const { id } = useParams()
