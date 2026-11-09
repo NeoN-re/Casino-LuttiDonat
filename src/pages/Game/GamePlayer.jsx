@@ -4,22 +4,29 @@ import { fetchGames } from '../../api/gamesApi'
 import { useAuth } from '../../context/AuthContext'
 import Blackjack from '../../components/Blackjack/Blackjack'
 import Mines from '../../components/Mines/Mines'
+import FallingPickaxe from '../../components/FallingPickaxe/FallingPickaxe'
 
 const GamePlayer = () => {
   const { id } = useParams()
-  const { user } = useAuth()
+  const { user, loading: authLoading } = useAuth()
   const [game, setGame] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    let cancelled = false
     fetchGames().then((data) => {
-      const found = data.find((g) => String(g.id) === String(id))
-      setGame(found || null)
-      setLoading(false)
+      if (!cancelled) {
+        const found = data.find((g) => String(g.id) === String(id))
+        setGame(found || null)
+        setLoading(false)
+      }
     })
+    return () => { cancelled = true }
   }, [id])
 
-  if (loading) return <div style={{ color: 'var(--text-white)', padding: 40 }}>Загрузка...</div>
+  if (loading || authLoading) {
+    return <div style={{ color: 'var(--text-white)', padding: 40 }}>Загрузка...</div>
+  }
 
   if (!game) {
     return (
@@ -27,41 +34,6 @@ const GamePlayer = () => {
         <h1>Игра не найдена</h1>
         <Link to="/" className="btn btn-register" style={{ marginTop: 20, textDecoration: 'none' }}>
           На главную
-        </Link>
-      </div>
-    )
-  }
-
-  if (!user) {
-    return (
-      <div style={{ 
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        minHeight: '60vh', 
-        color: 'var(--text-white)',
-        textAlign: 'center',
-        background: 'var(--bg-card)',
-        borderRadius: 16,
-        padding: 40,
-        border: '1px solid var(--border-subtle)',
-        marginTop: 20
-      }}>
-        <h2 style={{ fontSize: 24, marginBottom: 15 }}>Требуется регистрация</h2>
-        <p style={{ color: 'var(--text-gray)', marginBottom: 30, maxWidth: 400 }}>
-          Чтобы играть в "{game.title}", вам необходимо создать аккаунт или войти в существующий.
-        </p>
-        <div style={{ display: 'flex', gap: 15 }}>
-          <Link to="/register" className="btn btn-register" style={{ textDecoration: 'none', padding: '12px 24px', fontSize: '16px' }}>
-            Зарегистрироваться
-          </Link>
-          <Link to="/login" className="btn btn-login" style={{ textDecoration: 'none', padding: '12px 24px', fontSize: '16px' }}>
-            Войти
-          </Link>
-        </div>
-        <Link to="/" style={{ color: 'var(--text-gray)', textDecoration: 'none', fontSize: 14, marginTop: 30 }}>
-          ← Вернуться к списку игр
         </Link>
       </div>
     )
@@ -76,14 +48,47 @@ const GamePlayer = () => {
         Назад к играм
       </Link>
 
-      {game.isLocal ? (
-        <div style={{ marginTop: 20 }}>
-           {game.component === 'Mines' && <Mines />}
-           {game.component === 'Blackjack' && <Blackjack />}
-           {game.component === 'FallingPickaxe' && <FallingPickaxe />}
-        </div>
-      ) : (
-        <div style={{ width: '100%', aspectRatio: '16 / 9', background: '#000', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
+      <div style={{ position: 'relative', width: '100%', aspectRatio: game.isLocal ? 'auto' : '16 / 9', minHeight: '500px', background: '#000', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
+        
+        {!user && (
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(26, 20, 16, 0.85)',
+            backdropFilter: 'blur(8px)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 10,
+            textAlign: 'center',
+            padding: 20
+          }}>
+            <h2 style={{ fontSize: 32, color: 'var(--accent-primary)', marginBottom: 15 }}>Доступ ограничен</h2>
+            <p style={{ color: 'var(--text-gray)', marginBottom: 30, maxWidth: 400, fontSize: 16 }}>
+              Чтобы играть в "{game.title}", вам необходимо войти в аккаунт или зарегистрироваться.
+            </p>
+            <div style={{ display: 'flex', gap: 15 }}>
+              <Link to="/register" className="btn btn-register" style={{ textDecoration: 'none', padding: '12px 30px', fontSize: 16 }}>
+                Зарегистрироваться
+              </Link>
+              <Link to="/login" className="btn btn-login" style={{ textDecoration: 'none', padding: '12px 30px', fontSize: 16 }}>
+                Войти
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {game.isLocal ? (
+          <div style={{ padding: 20, opacity: user ? 1 : 0.3, pointerEvents: user ? 'auto' : 'none' }}>
+             {game.component === 'Mines' && <Mines />}
+             {game.component === 'Blackjack' && <Blackjack />}
+             {game.component === 'FallingPickaxe' && <FallingPickaxe />}
+          </div>
+        ) : (
           <iframe
             src={game.demo}
             width="100%"
@@ -92,9 +97,11 @@ const GamePlayer = () => {
             allowFullScreen
             allow="autoplay; fullscreen"
             title={game.title || 'Game'}
+            style={{ opacity: user ? 1 : 0.3, pointerEvents: user ? 'auto' : 'none' }}
           />
-        </div>
-      )}
+        )}
+
+      </div>
     </div>
   )
 }
