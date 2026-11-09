@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { fetchGames } from '../../api/gamesApi'
-import Blackjack from '../Blackjack/Blackjack'
-import Mines from '../Mines/Mines';
-// Если вы добавляли Покер, импортируйте и его:
-// import Poker from '../Poker/Poker'; 
+import { useAuth } from '../../context/AuthContext'
+import Blackjack from '../../components/Blackjack/Blackjack'
+import Mines from '../../components/Mines/Mines'
 
 const GamePlayer = () => {
   const { id } = useParams()
+  const { user } = useAuth()
   const [game, setGame] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -32,6 +32,41 @@ const GamePlayer = () => {
     )
   }
 
+  if (!user) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        minHeight: '60vh', 
+        color: 'var(--text-white)',
+        textAlign: 'center',
+        background: 'var(--bg-card)',
+        borderRadius: 16,
+        padding: 40,
+        border: '1px solid var(--border-subtle)',
+        marginTop: 20
+      }}>
+        <h2 style={{ fontSize: 24, marginBottom: 15 }}>Требуется регистрация</h2>
+        <p style={{ color: 'var(--text-gray)', marginBottom: 30, maxWidth: 400 }}>
+          Чтобы играть в "{game.title}", вам необходимо создать аккаунт или войти в существующий.
+        </p>
+        <div style={{ display: 'flex', gap: 15 }}>
+          <Link to="/register" className="btn btn-register" style={{ textDecoration: 'none', padding: '12px 24px', fontSize: '16px' }}>
+            Зарегистрироваться
+          </Link>
+          <Link to="/login" className="btn btn-login" style={{ textDecoration: 'none', padding: '12px 24px', fontSize: '16px' }}>
+            Войти
+          </Link>
+        </div>
+        <Link to="/" style={{ color: 'var(--text-gray)', textDecoration: 'none', fontSize: 14, marginTop: 30 }}>
+          ← Вернуться к списку игр
+        </Link>
+      </div>
+    )
+  }
+
   return (
     <div style={{ color: 'var(--text-white)' }}>
       <Link
@@ -41,14 +76,11 @@ const GamePlayer = () => {
         Назад к играм
       </Link>
 
-      {/* ВОТ ЗДЕСЬ МЫ ДЕЛАЕМ ПРОВЕРКУ КОМПОНЕНТА */}
       {game.isLocal ? (
         <div style={{ marginTop: 20 }}>
            {game.component === 'Mines' && <Mines />}
-           {(!game.component || game.component === 'Blackjack') && <Blackjack />}
-           
-           {/* Если добавите покер, раскомментируйте: */}
-           {/* {game.component === 'Poker' && <Poker />} */}
+           {game.component === 'Blackjack' && <Blackjack />}
+           {game.component === 'FallingPickaxe' && <FallingPickaxe />}
         </div>
       ) : (
         <div style={{ width: '100%', aspectRatio: '16 / 9', background: '#000', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
