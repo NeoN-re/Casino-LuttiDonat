@@ -80,7 +80,6 @@ const Blackjack = () => {
       } else {
         setMessage('Блэкджек! Вы выиграли!');
         updateBalance(currentBalance + Math.floor(bet * 1.5)); // Выплата 2.5 к 1 (чистый выигрыш 1.5)
-        setGameState('gameOver');
       }
     }
   };
