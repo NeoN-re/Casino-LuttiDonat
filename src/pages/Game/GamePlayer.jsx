@@ -8,7 +8,7 @@ import FallingPickaxe from '../../components/FallingPickaxe/FallingPickaxe'
 
 const GamePlayer = () => {
   const { id } = useParams()
-  const { user, loading: authLoading } = useAuth()
+  const { user, profile, loading: authLoading } = useAuth()
   const [game, setGame] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -39,6 +39,8 @@ const GamePlayer = () => {
     )
   }
 
+  const isLoggedIn = !!user
+
   return (
     <div style={{ color: 'var(--text-white)' }}>
       <Link
@@ -48,28 +50,24 @@ const GamePlayer = () => {
         Назад к играм
       </Link>
 
-      <div style={{ position: 'relative', width: '100%', aspectRatio: game.isLocal ? 'auto' : '16 / 9', minHeight: '500px', background: '#000', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
+      <div style={{ position: 'relative', width: '100%', background: '#000', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border-subtle)', minHeight: '400px' }}>
         
-        {!user && (
+        {!isLoggedIn && (
           <div style={{
             position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(26, 20, 16, 0.85)',
-            backdropFilter: 'blur(8px)',
+            top: 0, left: 0, right: 0, bottom: 0,
+            background: 'rgba(26, 20, 16, 0.9)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            zIndex: 10,
+            zIndex: 999,
             textAlign: 'center',
             padding: 20
           }}>
-            <h2 style={{ fontSize: 32, color: 'var(--accent-primary)', marginBottom: 15 }}>Доступ ограничен</h2>
+            <h2 style={{ fontSize: 32, color: 'var(--accent-primary)', marginBottom: 15 }}>Требуется регистрация</h2>
             <p style={{ color: 'var(--text-gray)', marginBottom: 30, maxWidth: 400, fontSize: 16 }}>
-              Чтобы играть в "{game.title}", вам необходимо войти в аккаунт или зарегистрироваться.
+              Чтобы играть в "{game.title}", пожалуйста, войдите в аккаунт или зарегистрируйтесь.
             </p>
             <div style={{ display: 'flex', gap: 15 }}>
               <Link to="/register" className="btn btn-register" style={{ textDecoration: 'none', padding: '12px 30px', fontSize: 16 }}>
@@ -82,24 +80,31 @@ const GamePlayer = () => {
           </div>
         )}
 
-        {game.isLocal ? (
-          <div style={{ padding: 20, opacity: user ? 1 : 0.3, pointerEvents: user ? 'auto' : 'none' }}>
-             {game.component === 'Mines' && <Mines />}
-             {game.component === 'Blackjack' && <Blackjack />}
-             {game.component === 'FallingPickaxe' && <FallingPickaxe />}
-          </div>
-        ) : (
-          <iframe
-            src={game.demo}
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            allowFullScreen
-            allow="autoplay; fullscreen"
-            title={game.title || 'Game'}
-            style={{ opacity: user ? 1 : 0.3, pointerEvents: user ? 'auto' : 'none' }}
-          />
-        )}
+        <div style={{ 
+          opacity: isLoggedIn ? 1 : 0.2, 
+          pointerEvents: isLoggedIn ? 'auto' : 'none',
+          width: '100%',
+          height: game.isLocal ? 'auto' : '100%',
+          minHeight: game.isLocal ? 'auto' : '500px'
+        }}>
+          {game.isLocal ? (
+            <div style={{ padding: 20 }}>
+               {game.component === 'Mines' && <Mines />}
+               {game.component === 'Blackjack' && <Blackjack />}
+               {game.component === 'FallingPickaxe' && <FallingPickaxe />}
+            </div>
+          ) : (
+            <iframe
+              src={game.demo}
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allowFullScreen
+              allow="autoplay; fullscreen"
+              title={game.title || 'Game'}
+            />
+          )}
+        </div>
 
       </div>
     </div>
