@@ -4,7 +4,6 @@ import { fetchGames } from '../../api/gamesApi'
 import { useAuth } from '../../context/AuthContext'
 import Blackjack from '../../components/Blackjack/Blackjack'
 import Mines from '../../components/Mines/Mines'
-import FallingPickaxe from '../../components/FallingPickaxe/FallingPickaxe'
 
 const GamePlayer = () => {
   const { id } = useParams()
