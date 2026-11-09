@@ -79,7 +79,7 @@ const Blackjack = () => {
         setGameState('gameOver');
       } else {
         setMessage('Блэкджек! Вы выиграли!');
-        updateBalance(currentBalance + bet * 3);); 
+        updateBalance(currentBalance + bet * 3);
         setGameState('gameOver');
       }
     }
